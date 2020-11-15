@@ -1,19 +1,25 @@
-// Assignment code here
-function generate() {
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var num = "1234567890";
+var specialChar = "!@#$%^&*()_+=-`~/[|]<?.>,";
 
-  // set password length/complexity
+function generatePassword() {
+  //var chosenChars = "";
+
+  // set password length
   let complexity = document.getElementById("slider").value;
 
   // possible password values
-  let values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()-_=+";
+  let values = ("lowerCase" , "upperCase" , "num" , "specialChar");
+
+  let password = "";
 
   // create for loop to choose password characters
   for (var i = 0; i <= complexity; i++) {
     password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.lenght - 1)));
   }
 
-  // add password to textbox
-  document.getElementById("password").value = password;
+  return password;
 
 }
 
@@ -25,7 +31,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generate();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
