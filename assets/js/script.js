@@ -10,7 +10,7 @@ function generatePassword() {
   let complexity = document.getElementById("slider").value;
 
   // possible password values
-  let values = ("lowerCase, upperCase, num, specialChar");
+  let values = (lowerCase + upperCase + num + specialChar);
 
   let password = "";
 
