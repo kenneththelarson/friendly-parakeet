@@ -10,13 +10,13 @@ function generatePassword() {
   let complexity = document.getElementById("slider").value;
 
   // possible password values
-  let values = ("lowerCase" , "upperCase" , "num" , "specialChar");
+  let values = ("lowerCase, upperCase, num, specialChar");
 
   let password = "";
 
   // create for loop to choose password characters
   for (var i = 0; i <= complexity; i++) {
-    password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.lenght - 1)));
+    password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
   }
 
   return password;
@@ -55,7 +55,7 @@ document.getElementById("slider").oninput = function () {
 // function to copy password to clipboard
 function copyPassword() {
 
-  document.getElementById("display").select();
+  document.getElementById("password").select();
   document.execCommand("Copy");
   alert("Password copied to clipboard");
 }
