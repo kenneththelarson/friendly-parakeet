@@ -1,22 +1,21 @@
-var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var num = "1234567890";
 var specialChar = "!@#$%^&*()_+=-`~/[|]<?.>,";
 
 function generatePassword() {
-  //var chosenChars = "";
+  let password = "";
+  let pickedChars = "";
 
   // set password length
   let complexity = document.getElementById("slider").value;
 
   // possible password values
-  let values = (lowerCase + upperCase + num + specialChar);
-
-  let password = "";
+  let values = (upperCase + lowerCase + num + specialChar);
 
   // create for loop to choose password characters
   for (var i = 0; i <= complexity; i++) {
-    password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
+    password += pickedChars + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
   }
 
   return password;
