@@ -1,29 +1,51 @@
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// Assignment code here
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var num = "1234567890";
-var specialChar = "!@#$%^&*()_+=-`~/[|]<?.>,";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUZWXYZ";
+var num = "0123456789";
+var specialChars = "!@#$%^&*()_+=-></?";
+
 
 function generatePassword() {
-  let password = "";
-  let pickedChars = "";
+  var password = "";
+  var pickedChars = "";
 
-  // set password length
-  let complexity = document.getElementById("slider").value;
+  passLength = prompt("What character length would you like? Enter a number between 8 and 128.");
+  while (passLength < 8 || passLength > 128 || isNaN(passLength)) {
+    passLength = prompt("Please enter a number between 8 and 128.");
+  }
+  
+  var lowerChar = window.confirm("Would you like to include 'lowercase' characters?");
+  var upperChar = window.confirm("Would you like to include 'UPPERCASE' characters?");
+  var numeric = window.confirm("Would you like to include numbers?");
+  var specChar = window.confirm("Would you like to include special characters?");
 
-  // possible password values
-  let values = (upperCase + lowerCase + num + specialChar);
+  if (lowerChar === false && upperChar === false && numeric === false && specChar=== false) {
+    alert("Selection must include at least one character type.");
+    return "Try Again."
+  }
 
-  // create for loop to choose password characters
-  for (var i = 0; i <= complexity; i++) {
-    password += pickedChars + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
+  if (lowerChar){
+    pickedChars += lowerCase;
+  }
+  if (upperChar){
+    pickedChars += upperCase;
+  }
+  if (numeric){
+    pickedChars += num;
+  }
+  if (specChar){
+    pickedChars += specialChars;
+  }
+
+  for (var i = 0; i < passLength; i++) {
+    password += pickedChars.charAt(Math.floor(Math.random() * pickedChars.length));
   }
 
   return password;
 
 }
 
-// set slider default to 60
-document.getElementById("length").innerHTML = "Length: 60";
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -39,22 +61,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// function to set length to slider position
-document.getElementById("slider").oninput = function () {
-
-  if (document.getElementById("slider").value > 8) {
-    document.getElementById("length").innerHTML = "Length: " + document.getElementById("slider").value;
-  }
-  else {
-    document.getElementById("length").innerHTML = "Length: 8";
-  }
-}
-
-// function to copy password to clipboard
-function copyPassword() {
-
-  document.getElementById("password").select();
-  document.execCommand("Copy");
-  alert("Password copied to clipboard");
-}
